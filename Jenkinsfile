@@ -1,5 +1,11 @@
 pipeline {
     agent { docker { image 'node:6.3' } }
+    environment {
+
+    }
+    options {
+        timestamps()
+    }
     parameters {
         string(defaultValue: 'master', description: 'which branch to run', name: 'branch')
         string(defaultValue: 'master', description: 'which branch to run', name: 'branch2')
@@ -7,6 +13,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                sh "./build.sh"
                 sh "npm --version"
                 sh "echo 'PARAMS : ${params}'"
             }
@@ -14,7 +21,9 @@ pipeline {
     }
     post {
       always {
-          sh "echo 'cleaning workspace for ${params.branch}'"
+          sh "Post-Processing"
+          /* archiveArtifacts artifacts: '${ARTIFACTS}', allowEmptyArchive: false */
+          cleanWs()
       }
     }
 }

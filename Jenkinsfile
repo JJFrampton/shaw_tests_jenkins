@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh "./build.sh"
+                /* sh "./build.sh" */
                 sh "npm --version"
                 sh "echo 'PARAMS : ${params}'"
             }

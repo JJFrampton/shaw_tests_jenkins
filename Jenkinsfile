@@ -14,21 +14,30 @@ pipeline {
         stage('build') {
             steps {
                 /* sh "./build.sh" */
+                sh "echo 'RUNNING BUILD'"
+                sh "npm --version"
+                sh "echo 'PARAMS : ${params}'"
+            }
+        }
+        stage('test') {
+            steps {
+                /* sh "./test.sh" */
+                sh "echo 'RUNNING TESTS'"
                 sh "npm --version"
                 sh "echo 'PARAMS : ${params}'"
             }
         }
     }
     post {
-      success {
-          slackSend channel: '#jenkins-test',
-          color: 'good',
-          message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
-      }
       always {
           sh "echo Post-Processing"
           /* archiveArtifacts artifacts: '${ARTIFACTS}', allowEmptyArchive: false */
           cleanWs()
       }
+      /* success { */
+      /*     slackSend channel: '#jenkins-test', */
+      /*     color: 'good', */
+      /*     message: "The pipeline ${currentBuild.fullDisplayName} completed successfully." */
+      /* } */
     }
 }

@@ -26,7 +26,7 @@ pipeline {
           message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
       }
       always {
-          sh "Post-Processing"
+          sh "echo Post-Processing"
           /* archiveArtifacts artifacts: '${ARTIFACTS}', allowEmptyArchive: false */
           cleanWs()
       }

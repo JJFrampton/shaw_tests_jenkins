@@ -20,6 +20,11 @@ pipeline {
         }
     }
     post {
+      success {
+          slackSend channel: '#jenkins-test',
+          color: 'good',
+          message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+      }
       always {
           sh "Post-Processing"
           /* archiveArtifacts artifacts: '${ARTIFACTS}', allowEmptyArchive: false */

@@ -1,0 +1,23 @@
+{
+  "name": "shaw_tests_jenkins",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node_test_server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JJFrampton/shaw_tests_jenkins.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JJFrampton/shaw_tests_jenkins/issues"
+  },
+  "homepage": "https://github.com/JJFrampton/shaw_tests_jenkins#readme"
+}

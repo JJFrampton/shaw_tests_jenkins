@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'npm --version'
-                echo `whoami`
+                whoami
                 echo params
             }
         }

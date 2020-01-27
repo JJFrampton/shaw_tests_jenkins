@@ -8,14 +8,13 @@ pipeline {
         stage('build') {
             steps {
                 sh "npm --version"
-                sh "echo 'BRANCH : ${params.branch}'"
-                sh "echo 'ALL PARAMS : ${params}'"
+                sh "echo 'PARAMS : ${params}'"
             }
         }
     }
     post {
       always {
-          sh "echo 'cleaning workspace'"
+          sh "echo 'cleaning workspace for ${params.branch}'"
       }
     }
 }

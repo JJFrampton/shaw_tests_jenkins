@@ -1,43 +1,44 @@
 pipeline {
     agent { docker { image 'node:6.3' } }
-    environment {
-        ARTIFACTS = 'yoshida'
+    /* agent { label "cluster" } */
+
+    parameters {
+        string(name: 'target_project', defaultValue: 'invalid_project', description: 'project to build', trim: true)
     }
+
+    /* triggers { */
+    /*     pollSCM('H H(0-2) * * *')    //Should use a git hook to build on change? */
+    /* } */
+
     options {
+        buildDiscarder(logRotator(numToKeepStr:'3'))    //How many builds to keep in history
         timestamps()
     }
-    parameters {
-        string(defaultValue: 'master', description: 'which branch to run', name: 'branch')
-        string(defaultValue: 'master', description: 'which branch to run', name: 'branch2')
-    }
+
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                /* sh "./build.sh" */
-                sh "echo 'RUNNING BUILD'"
-                sh "npm --version"
-                sh "echo 'PARAMS : ${params}'"
+                sh "echo 'Building ${params.target_project}'"
+                sh "./build.sh"
+                sh "docker tag ${params.target_project}:latest ${params.target_project}:\$(date '+%F')"
+                sh "docker save ${params.target_project}:\$(date '+%F') > ${params.target_project}-\$(date '+%F').tar"
             }
         }
-        stage('test') {
+        stage('Test') {
             steps {
-                /* sh "./test.sh" */
-                sh "echo 'RUNNING TESTS'"
-                sh "npm --version"
-                sh "echo 'PARAMS : ${params}'"
+                sh "echo 'Test not implemented for ${params.target_project}'"
+            }
+        stage('Deploy') {
+            steps {
+                sh "echo 'Deploy not implemented for ${params.target_project}'"
             }
         }
     }
+
     post {
-      always {
-          sh "echo Post-Processing"
-          /* archiveArtifacts artifacts: '${ARTIFACTS}', allowEmptyArchive: false */
-          cleanWs()
-      }
-      /* success { */
-      /*     slackSend channel: '#jenkins-test', */
-      /*     color: 'good', */
-      /*     message: "The pipeline ${currentBuild.fullDisplayName} completed successfully." */
-      /* } */
+        always {
+            archiveArtifacts artifacts: '${params.target_project}-*', allowEmptyArchive: false
+            cleanWs()
+        }
     }
 }

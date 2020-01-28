@@ -6,9 +6,9 @@ pipeline {
         string(name: 'target_project', defaultValue: 'invalid_project', description: 'project to build', trim: true)
     }
 
-    /* triggers { */
-    /*     pollSCM('H H(0-2) * * *')    //Should use a git hook to build on change? */
-    /* } */
+    triggers {
+        pollSCM('H H(0-2) * * *')    //Should use a git hook to build on change?
+    }
 
     options {
         buildDiscarder(logRotator(numToKeepStr:'3'))    //How many builds to keep in history

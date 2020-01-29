@@ -17,12 +17,12 @@ pipeline {
     stages {
         stage('Params') {
             steps {
-                sh "echo 'target_project : ${PROJECT}'"
+                sh "# target_project : ${PROJECT}"
             }
         }
         stage('Build') {
             steps {
-                sh "echo 'Building ${PROJECT}'"
+                sh "# Building ${PROJECT}"
                 sh "./build.sh"
                 sh "docker tag ${PROJECT}:latest ${PROJECT}:\$(date '+%F')"
                 sh "docker save ${PROJECT}:\$(date '+%F') > ${PROJECT}-\$(date '+%F').tar"

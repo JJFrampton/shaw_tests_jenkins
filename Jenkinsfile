@@ -15,6 +15,9 @@ pipeline {
     }
 
     stages {
+        stage('Params') {
+            sh "echo 'target_project : ${params.target_project}'"
+        }
         stage('Build') {
             steps {
                 sh "echo 'Building ${params.target_project}'"

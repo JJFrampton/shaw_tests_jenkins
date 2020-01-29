@@ -1,8 +1,8 @@
 pipeline {
-    agent { docker { image 'node:6.3' } }
+    agent any
 
-    parameters {
-        string(name: 'target_project', defaultValue: 'captive-portal', description: 'project to build', trim: true)
+    environment {
+        PROJECT = 'wifi'
     }
 
     triggers {
@@ -17,22 +17,22 @@ pipeline {
     stages {
         stage('Params') {
             steps {
-                sh "echo 'target_project : ${params.target_project}'"
+                sh "echo 'target_project : ${PROJECT}'"
             }
         }
         stage('Build') {
             steps {
-                sh "echo 'Building ${params.target_project}'"
+                sh "echo 'Building ${PROJECT}'"
                 sh "./build.sh"
-                sh "docker tag ${params.target_project}:latest ${params.target_project}:\$(date '+%F')"
-                sh "docker save ${params.target_project}:\$(date '+%F') > ${params.target_project}-\$(date '+%F').tar"
+                sh "docker tag ${PROJECT}:latest ${PROJECT}:\$(date '+%F')"
+                sh "docker save ${PROJECT}:\$(date '+%F') > ${PROJECT}-\$(date '+%F').tar"
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: '${params.target_project}-*', allowEmptyArchive: false
+            archiveArtifacts artifacts: '${PROJECT}-*', allowEmptyArchive: false
             cleanWs()
         }
     }

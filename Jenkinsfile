@@ -15,8 +15,8 @@ pipeline {
             steps {
                 sh "echo 'PROJECT: ${PROJECT}'"
                 sh "./build.sh"
-                sh "docker tag ${PROJECT}:latest ${PROJECT}:\$(date '+%F')"
-                sh "docker save ${PROJECT}:\$(date '+%F') > ${PROJECT}-\$(date '+%F').tar"
+                /* sh "docker tag ${PROJECT}:latest ${PROJECT}:\$(date '+%F')" */
+                /* sh "docker save ${PROJECT}:\$(date '+%F') > ${PROJECT}-\$(date '+%F').tar" */
             }
         }
     }

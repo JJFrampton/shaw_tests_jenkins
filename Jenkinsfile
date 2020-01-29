@@ -1,6 +1,5 @@
 pipeline {
     agent { docker { image 'node:6.3' } }
-    /* agent { label "cluster" } */
 
     parameters {
         string(name: 'target_project', defaultValue: 'invalid_project', description: 'project to build', trim: true)

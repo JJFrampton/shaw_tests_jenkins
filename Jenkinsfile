@@ -23,7 +23,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: ${PROJECT}-*, allowEmptyArchive: false
+            archiveArtifacts artifacts: "${PROJECT}-*", allowEmptyArchive: false
             cleanWs()
         }
     }

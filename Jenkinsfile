@@ -2,7 +2,7 @@ pipeline {
     agent { docker { image 'node:6.3' } }
 
     parameters {
-        string(name: 'target_project', defaultValue: 'invalid_project', description: 'project to build', trim: true)
+        string(name: 'target_project', defaultValue: 'captive-portal', description: 'project to build', trim: true)
     }
 
     triggers {

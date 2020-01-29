@@ -27,6 +27,7 @@ pipeline {
             steps {
                 sh "echo 'Test not implemented for ${params.target_project}'"
             }
+        }
         stage('Deploy') {
             steps {
                 sh "echo 'Deploy not implemented for ${params.target_project}'"

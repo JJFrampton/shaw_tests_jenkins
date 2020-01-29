@@ -5,10 +5,6 @@ pipeline {
         PROJECT = 'wifi'
     }
 
-    triggers {
-        pollSCM('H H(0-2) * * *')    //Should use a git hook to build on change?
-    }
-
     options {
         buildDiscarder(logRotator(numToKeepStr:'3'))    //How many builds to keep in history
         timestamps()

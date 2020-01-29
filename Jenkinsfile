@@ -16,7 +16,9 @@ pipeline {
 
     stages {
         stage('Params') {
-            sh "echo 'target_project : ${params.target_project}'"
+            steps {
+                sh "echo 'target_project : ${params.target_project}'"
+            }
         }
         stage('Build') {
             steps {
@@ -24,16 +26,6 @@ pipeline {
                 sh "./build.sh"
                 sh "docker tag ${params.target_project}:latest ${params.target_project}:\$(date '+%F')"
                 sh "docker save ${params.target_project}:\$(date '+%F') > ${params.target_project}-\$(date '+%F').tar"
-            }
-        }
-        stage('Test') {
-            steps {
-                sh "echo 'Test not implemented for ${params.target_project}'"
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh "echo 'Deploy not implemented for ${params.target_project}'"
             }
         }
     }

@@ -16,6 +16,7 @@ pipeline {
                 sh "echo 'PROJECT: ${PROJECT}'"
                 /* sh "./build.sh" */
                 sh "ls -lah"
+                sh "ls -lah ../"
             }
         }
     }

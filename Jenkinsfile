@@ -16,8 +16,9 @@ pipeline {
                 sh "echo 'PROJECT: ${PROJECT}'"
                 /* sh "./build.sh" */
                 sh "ls -lah"
-                sh "ls -lah ../"
-                sh "ls -lah ../localtest_master"
+                sh "pwd"
+                sh "git clone http://localhost:3000/jframpton/localtest.git"
+                sh "./build.sh"
             }
         }
     }

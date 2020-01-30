@@ -1,2 +1,3 @@
 #!/bin/bash
-npm install
+# npm install
+echo "this is working"

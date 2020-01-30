@@ -14,7 +14,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh "echo 'PROJECT: ${PROJECT}'"
-                sh "./build.sh"
+                /* sh "./build.sh" */
+                sh "ls -lah"
             }
         }
     }

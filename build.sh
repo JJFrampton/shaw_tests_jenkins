@@ -1,5 +1,5 @@
 #!/bin/bash
 # npm install
-echo "this is working"
-echo "this is working"
-echo "this is working"
+echo "======================"
+echo "YOSHIDA ISHIMA is here"
+echo "======================"

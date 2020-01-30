@@ -17,6 +17,7 @@ pipeline {
                 /* sh "./build.sh" */
                 sh "ls -lah"
                 sh "ls -lah ../"
+                sh "ls -lah ../localtest_master"
             }
         }
     }

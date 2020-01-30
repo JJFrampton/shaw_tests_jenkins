@@ -17,7 +17,7 @@ pipeline {
                 /* sh "./build.sh" */
                 sh "ls -lah"
                 sh "pwd"
-                sh "git clone http://localhost:3000/jframpton/localtest.git"
+                sh "git clone http://10.9.75.33:3000/jframpton/localtest.git"
                 sh "./build.sh"
             }
         }
